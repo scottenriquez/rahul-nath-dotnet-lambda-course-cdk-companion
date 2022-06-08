@@ -351,3 +351,5 @@ MigrationBackup/
 
 # JetBrains
 .idea/
+
+.DS_Store
