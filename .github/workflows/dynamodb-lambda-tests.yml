@@ -1,0 +1,22 @@
+name: DynamoDBLambaTests 
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['6.0.x']
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Install dependencies
+        run: dotnet restore LambdaWithDynamoDB/src/LambdaWithDynamoDb.sln
+      - name: Build
+        run: dotnet build LambdaWithDynamoDB/src/LambdaWithDynamoDb.sln --configuration Release --no-restore
+      - name: Test
+        run: dotnet test LambdaWithDynamoDB/src/LambdaWithDynamoDB.LambdaFunction/test/LambdaWithDynamoDB.LambdaFunction.Tests/LambdaWithDynamoDB.LambdaFunction.Tests.csproj 
