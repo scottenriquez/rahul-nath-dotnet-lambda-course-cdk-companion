@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using Amazon.CDK;
 using Amazon.CDK.AWS.DynamoDB;
+using Amazon.CDK.AWS.IAM;
+using Amazon.CDK.AWS.Lambda;
 using Amazon.CDK.CustomResources;
 using Constructs;
 using Attribute = Amazon.CDK.AWS.DynamoDB.Attribute;
@@ -50,6 +52,43 @@ namespace LambdaWithDynamoDb
                 })
             });
             loadDynamoDbDataCustomResource.Node.AddDependency(dynamoDbUserTable);
+            Role dockerFunctionExecutionRole = new Role(this, "DockerFunctionExecutionRole", new RoleProps {
+                AssumedBy = new ServicePrincipal("lambda.amazonaws.com"),
+                ManagedPolicies = new IManagedPolicy[]
+                {
+                    new ManagedPolicy(this, "ManagedPolicy", new ManagedPolicyProps()
+                    {
+                        Document = new PolicyDocument(new PolicyDocumentProps()
+                        {
+                            Statements = new []
+                            {
+                                new PolicyStatement(new PolicyStatementProps()
+                                {
+                                    Actions = new [] { "dynamodb:Query" },
+                                    Resources = new [] { dynamoDbUserTable.TableArn }
+                                })
+                            }
+                        })
+                    })
+                }
+            });
+            DockerImageCode dockerImageCode = DockerImageCode.FromImageAsset("src/LambdaWithDynamoDb.DockerFunction/src/LambdaWithDynamoDb.DockerFunction");
+            DockerImageFunction dockerImageFunction = new DockerImageFunction(this, "LambdaFunction",
+                new DockerImageFunctionProps()
+                {
+                    Architecture = Architecture.ARM_64,
+                    Code = dockerImageCode,
+                    Description = ".NET 6 Docker Lambda function for querying DynamoDB",
+                    Environment = new Dictionary<string, string>()
+                    {
+                        {
+                            "DYNAMODB_TABLE_NAME", dynamoDbUserTable.TableName
+                        }
+                    },
+                    Role = dockerFunctionExecutionRole,
+                    Timeout = Duration.Minutes(5) 
+                }
+            );
         }
     }
 }
