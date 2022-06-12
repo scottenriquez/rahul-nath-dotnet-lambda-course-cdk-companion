@@ -5,11 +5,12 @@
     "dotnet lambda help",
     "All the command line options for the Lambda command can be specified in this file."
   ],
-  "profile": "default",
-  "region": "us-east-1",
+  "profile": "",
+  "region": "",
   "configuration": "Release",
-  "function-runtime": "dotnet6",
+  "package-type": "image",
   "function-memory-size": 256,
   "function-timeout": 30,
-  "function-handler": "LambdaWithDynamoDB.LambdaFunction::LambdaWithDynamoDB.LambdaFunction.Function::FunctionHandler"
+  "image-command": "LambdaWithDynamoDb.DockerFunction::LambdaWithDynamoDb.DockerFunction.Function::FunctionHandler",
+  "docker-host-build-output-dir": "./bin/Release/lambda-publish"
 }
