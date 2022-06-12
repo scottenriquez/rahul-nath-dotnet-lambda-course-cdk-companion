@@ -15,8 +15,8 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
-        run: dotnet restore LambdaWithDynamoDB/src/LambdaWithDynamoDb.sln
+        run: dotnet restore LambdaWithDynamoDb/src/LambdaWithDynamoDb.sln
       - name: Build
-        run: dotnet build LambdaWithDynamoDB/src/LambdaWithDynamoDb.sln --configuration Release --no-restore
+        run: dotnet build LambdaWithDynamoDb/src/LambdaWithDynamoDb.sln --configuration Release --no-restore
       - name: Test
-        run: dotnet test LambdaWithDynamoDB/src/LambdaWithDynamoDB.LambdaFunction/test/LambdaWithDynamoDB.LambdaFunction.Tests/LambdaWithDynamoDB.LambdaFunction.Tests.csproj 
+        run: dotnet test LambdaWithDynamoDb/src/LambdaWithDynamoDb.LambdaFunction/test/LambdaWithDynamoDb.LambdaFunction.Tests/LambdaWithDynamoDb.LambdaFunction.Tests.csproj 
