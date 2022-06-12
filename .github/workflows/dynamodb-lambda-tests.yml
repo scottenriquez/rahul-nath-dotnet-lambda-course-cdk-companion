@@ -19,4 +19,4 @@ jobs:
       - name: Build
         run: dotnet build LambdaWithDynamoDB/src/LambdaWithDynamoDb.sln --configuration Release --no-restore
       - name: Test
-        run: dotnet test LambdaWithDynamoDB/src/LambdaWithDynamoDb.LambdaFunction/test/LambdaWithDynamoDb.LambdaFunction.Tests/LambdaWithDynamoDb.LambdaFunction.Tests.csproj 
+        run: dotnet test LambdaWithDynamoDB/src/LambdaWithDynamoDb.DockerFunction/test/LambdaWithDynamoDb.DockerFunction.Tests/LambdaWithDynamoDb.DockerFunction.Tests.csproj
