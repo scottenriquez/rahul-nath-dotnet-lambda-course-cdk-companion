@@ -1,3 +1,5 @@
+using System.Text.Json;
+using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -11,13 +13,15 @@ public class Function
     /// <summary>
     /// A simple function that takes a string and returns both the upper and lower case version of the string.
     /// </summary>
-    /// <param name="input"></param>
+    /// <param name="request"></param>
     /// <param name="context"></param>
     /// <returns></returns>
-    public Casing FunctionHandler(string input, ILambdaContext context)
+    public APIGatewayHttpApiV2ProxyResponse FunctionHandler(APIGatewayHttpApiV2ProxyRequest request, ILambdaContext context)
     {
-        return new Casing(input.ToLower(), input.ToUpper());
+        return new APIGatewayHttpApiV2ProxyResponse()
+        {
+            Body = JsonSerializer.Serialize(request),
+            StatusCode = 200
+        };
     }
 }
-
-public record Casing(string Lower, string Upper);
