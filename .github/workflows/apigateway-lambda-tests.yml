@@ -1,0 +1,22 @@
+name: APIGatewayLambaTests 
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['6.0.x']
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Install dependencies
+        run: dotnet restore LambdaWithAPIGateway/src/LambdaWithApiGateway.sln
+      - name: Build
+        run: dotnet build LambdaWithAPIGateway/src/LambdaWithApiGateway.sln --configuration Release --no-restore
+      - name: Test
+        run: dotnet test LambdaWithAPIGateway/src/LambdaWithApiGateway.DockerFunction/test/LambdaWithApiGateway.DockerFunction.Tests/LambdaWithApiGateway.DockerFunction.Tests.csproj
