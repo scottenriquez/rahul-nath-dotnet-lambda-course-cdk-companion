@@ -1,6 +1,4 @@
 using Xunit;
-using Amazon.Lambda.Core;
-using Amazon.Lambda.TestUtilities;
 
 namespace LambdaWithApiGateway.DockerFunction.Tests;
 

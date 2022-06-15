@@ -1,27 +1,33 @@
-using System.Text.Json;
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
+using Amazon.Lambda.Serialization.SystemTextJson;
+using LambdaWithApiGateway.DockerFunction.Repository;
+using LambdaWithApiGateway.DockerFunction.Service;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
-[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
+[assembly: LambdaSerializer(typeof(DefaultLambdaJsonSerializer))]
 
 namespace LambdaWithApiGateway.DockerFunction;
 
 public class Function
 {
+    private readonly IUserService _userService = new UserService(new ResponseService(), new DynamoDbUserRepository());
     
     /// <summary>
-    /// A simple function that takes a string and returns both the upper and lower case version of the string.
+    /// A Lambda function for handling API Gateway requests for GET, POST, and DELETE for users in a DynamoDB table 
     /// </summary>
     /// <param name="request"></param>
     /// <param name="context"></param>
     /// <returns></returns>
-    public APIGatewayHttpApiV2ProxyResponse FunctionHandler(APIGatewayHttpApiV2ProxyRequest request, ILambdaContext context)
+    public async Task<APIGatewayProxyResponse> FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
     {
-        return new APIGatewayHttpApiV2ProxyResponse()
+        string tableName = Environment.GetEnvironmentVariable("DYNAMODB_TABLE_NAME") ?? throw new InvalidOperationException();
+        return request.RequestContext.HttpMethod switch
         {
-            Body = JsonSerializer.Serialize(request),
-            StatusCode = 200
+            "GET" => await _userService.GetUserAsync(request, tableName),
+            "POST" => await _userService.AddUserAsync(request, tableName),
+            "DELETE" => await _userService.DeleteUserAsync(request, tableName),
+            _ => throw new ArgumentOutOfRangeException()
         };
     }
 }

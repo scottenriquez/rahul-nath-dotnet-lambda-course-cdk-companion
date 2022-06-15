@@ -13,7 +13,7 @@ public class Function
     private readonly IQueryService _queryService = new QueryService(new DynamoDbUserRepository());
     
     /// <summary>
-    /// A simple function that takes a string and returns both the upper and lower case version of the string.
+    /// A function that queries a DynamoDB table 
     /// </summary>
     /// <param name="input"></param>
     /// <param name="context"></param>
