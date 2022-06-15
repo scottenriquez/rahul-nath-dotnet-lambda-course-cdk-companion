@@ -10,7 +10,7 @@ namespace LambdaWithDynamoDb.DockerFunction.Tests;
 public class QueryServiceTests
 {
    [Fact]
-   public async Task Should_QueryUserTable_ForStandardInput()
+   public async Task Should_QueryUserTable_ForValidInput()
    {
       // arrange
       string userGuid = "e6f0ca6d-ba1c-4eec-9e2f-672e8f92447f";

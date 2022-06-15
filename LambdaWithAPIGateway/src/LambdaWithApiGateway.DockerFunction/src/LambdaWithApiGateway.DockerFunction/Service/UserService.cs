@@ -20,7 +20,7 @@ public class UserService : IUserService
     {
         try
         {
-            if (request.PathParameters.TryGetValue("userId", out var userId))
+            if (request.PathParameters.TryGetValue("userId", out string? userId))
             {
                 User user = await _userRepository.GetUserForIdAsync(userId, tableName);
                 return _responseService.GenerateSuccessResponse(user);
@@ -38,7 +38,7 @@ public class UserService : IUserService
         try
         {
             User? newUser = JsonSerializer.Deserialize<User>(request.Body);
-            if (newUser != null)
+            if (newUser != null && newUser.Id != null && newUser.Name != null)
             {
                 User createdUser = await _userRepository.AddUserAsync(newUser, tableName);
                 return _responseService.GenerateSuccessResponse(createdUser);
