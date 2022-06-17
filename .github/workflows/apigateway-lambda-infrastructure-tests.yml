@@ -18,5 +18,19 @@ jobs:
         run: dotnet restore LambdaWithAPIGateway/src/LambdaWithApiGateway.sln
       - name: Build
         run: dotnet build LambdaWithAPIGateway/src/LambdaWithApiGateway.sln --configuration Release --no-restore
-      - name: Test
-        run: dotnet test LambdaWithAPIGateway/src/LambdaWithApiGateway.Tests.Unit/LambdaWithApiGateway.Tests.Unit.csproj
+      - name: LambdaFunction_ShouldHaveDynamoDbTableEnvironmentVariable
+        run: dotnet test src/LambdaWithApiGateway.sln --filter "FullyQualifiedName~Stack_LambdaFunction_ShouldHaveDynamoDbTableEnvironmentVariable"
+      - name: Stack_FunctionExecutionPolicy_ShouldOnlyHaveAccessToOneDynamoDbResourceAndAllCloudWatchLogs
+        run: dotnet test src/LambdaWithApiGateway.sln --filter "FullyQualifiedName~Stack_FunctionExecutionPolicy_ShouldOnlyHaveAccessToOneDynamoDbResourceAndAllCloudWatchLogs"
+      - name: Stack_FunctionExecutionRole_ShouldAllowLambdaServicePrincipal
+        run: dotnet test src/LambdaWithApiGateway.sln --filter "FullyQualifiedName~Stack_FunctionExecutionRole_ShouldAllowLambdaServicePrincipal"
+      - name: Stack_DynamoDb_ShouldHaveFiveRcuAndWcu
+        run: dotnet test src/LambdaWithApiGateway.sln --filter "FullyQualifiedName~Stack_DynamoDb_ShouldHaveFiveRcuAndWcu"
+      - name: Stack_DynamoDb_ShouldHaveDeletionPolicyDelete
+        run: dotnet test src/LambdaWithApiGateway.sln --filter "FullyQualifiedName~Stack_DynamoDb_ShouldHaveDeletionPolicyDelete"
+      - name: Stack_DynamoDb_ShouldHaveIdPartitionKey
+        run: dotnet test src/LambdaWithApiGateway.sln --filter "FullyQualifiedName~Stack_DynamoDb_ShouldHaveIdPartitionKey"
+      - name: Stack_ApiGateway_ShouldHaveUserResource
+        run: dotnet test src/LambdaWithApiGateway.sln --filter "FullyQualifiedName~Stack_ApiGateway_ShouldHaveUserResource"
+      - name: Stack_ApiGateway_ShouldHaveUserIdResource
+        run: dotnet test src/LambdaWithApiGateway.sln --filter "FullyQualifiedName~Stack_ApiGateway_ShouldHaveUserIdResource"
