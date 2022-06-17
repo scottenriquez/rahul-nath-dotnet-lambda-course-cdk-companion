@@ -15,4 +15,11 @@
     <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.3.0" />
     <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.3.47" />
   </ItemGroup>
+  <ItemGroup>
+    <ContentWithTargetPath Include="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <TargetPath>src/LambdaWithDynamoDb.DockerFunction/src/LambdaWithDynamoDb.DockerFunction/Dockerfile</TargetPath>
+    </ContentWithTargetPath>
+    <None Include="Dockerfile" />
+  </ItemGroup>
 </Project>
