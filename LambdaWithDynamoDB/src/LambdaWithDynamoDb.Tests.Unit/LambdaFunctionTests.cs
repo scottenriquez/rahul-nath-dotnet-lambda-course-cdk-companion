@@ -18,7 +18,7 @@ public class LambdaFunctionTests
         Template template = Template.FromStack(stack);
 
         // assert
-        template.HasResourceProperties("AWS::ApiGateway::Method", new Dictionary<string, object>()
+        template.HasResourceProperties("AWS::Lambda::Function", new Dictionary<string, object>()
         {
             {
                 "Environment", new Dictionary<string, object>()
