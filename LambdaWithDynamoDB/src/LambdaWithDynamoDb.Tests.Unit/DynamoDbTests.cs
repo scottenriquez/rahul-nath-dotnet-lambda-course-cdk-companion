@@ -5,7 +5,7 @@ using Xunit;
 
 namespace LambdaWithDynamoDb.Tests.Unit;
 
-public class StackTests 
+public class DynamoDbTests
 {
     [Fact]
     public void Stack_DynamoDb_ShouldHaveFiveRcuAndWcu()
@@ -20,7 +20,8 @@ public class StackTests
         // assert
         template.HasResourceProperties("AWS::DynamoDB::Table", new Dictionary<string, object>()
         {
-            { "ProvisionedThroughput", new Dictionary<string, int>()
+            {
+                "ProvisionedThroughput", new Dictionary<string, int>()
                 {
                     {
                         "ReadCapacityUnits", 5
@@ -32,7 +33,7 @@ public class StackTests
             }
         });
     }
-    
+
     [Fact]
     public void Stack_DynamoDb_ShouldHaveDeletionPolicyDelete()
     {
@@ -46,7 +47,37 @@ public class StackTests
         // assert
         template.HasResource("AWS::DynamoDB::Table", new Dictionary<string, object>()
         {
-            { "DeletionPolicy", "Delete" }
+            {"DeletionPolicy", "Delete"}
+        });
+    }
+
+    [Fact]
+    public void Stack_DynamoDb_ShouldHaveIdPartitionKey()
+    {
+        // arrange
+        App app = new App();
+        LambdaWithDynamoDbStack stack = new LambdaWithDynamoDbStack(app, "LambdaWithDynamoDbStack");
+
+        // act
+        Template template = Template.FromStack(stack);
+
+        // assert
+        template.HasResourceProperties("AWS::DynamoDB::Table", new Dictionary<string, object>()
+        {
+            {
+                "KeySchema", new []
+                {
+                    new Dictionary<string, string>()
+                    {
+                        {
+                            "AttributeName", "Id"
+                        },
+                        {
+                            "KeyType", "HASH"
+                        }
+                    }
+                }
+            }
         });
     }
 }

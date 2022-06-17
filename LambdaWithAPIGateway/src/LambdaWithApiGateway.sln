@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{309B40B3-2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaWithApiGateway.DockerFunction.Tests", "LambdaWithApiGateway.DockerFunction\test\LambdaWithApiGateway.DockerFunction.Tests\LambdaWithApiGateway.DockerFunction.Tests.csproj", "{843644B6-BA87-4F20-B400-93BF836A7175}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaWithApiGateway.Tests.Unit", "LambdaWithApiGateway.Tests.Unit\LambdaWithApiGateway.Tests.Unit.csproj", "{FED0A180-1C8E-4D5F-A832-017A1A1ED842}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,18 @@ Global
 		{843644B6-BA87-4F20-B400-93BF836A7175}.Release|x64.Build.0 = Release|Any CPU
 		{843644B6-BA87-4F20-B400-93BF836A7175}.Release|x86.ActiveCfg = Release|Any CPU
 		{843644B6-BA87-4F20-B400-93BF836A7175}.Release|x86.Build.0 = Release|Any CPU
+		{FED0A180-1C8E-4D5F-A832-017A1A1ED842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FED0A180-1C8E-4D5F-A832-017A1A1ED842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FED0A180-1C8E-4D5F-A832-017A1A1ED842}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FED0A180-1C8E-4D5F-A832-017A1A1ED842}.Debug|x64.Build.0 = Debug|Any CPU
+		{FED0A180-1C8E-4D5F-A832-017A1A1ED842}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FED0A180-1C8E-4D5F-A832-017A1A1ED842}.Debug|x86.Build.0 = Debug|Any CPU
+		{FED0A180-1C8E-4D5F-A832-017A1A1ED842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FED0A180-1C8E-4D5F-A832-017A1A1ED842}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FED0A180-1C8E-4D5F-A832-017A1A1ED842}.Release|x64.ActiveCfg = Release|Any CPU
+		{FED0A180-1C8E-4D5F-A832-017A1A1ED842}.Release|x64.Build.0 = Release|Any CPU
+		{FED0A180-1C8E-4D5F-A832-017A1A1ED842}.Release|x86.ActiveCfg = Release|Any CPU
+		{FED0A180-1C8E-4D5F-A832-017A1A1ED842}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{508B6574-CEED-4842-A060-7E38EE411AA9} = {85C085FD-22ED-428E-8058-7664C0FBA3F5}

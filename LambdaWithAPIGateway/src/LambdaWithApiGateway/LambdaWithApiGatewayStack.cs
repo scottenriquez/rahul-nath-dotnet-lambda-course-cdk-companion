@@ -14,7 +14,7 @@ namespace LambdaWithApiGateway
 {
     public class LambdaWithApiGatewayStack : Stack
     {
-        internal LambdaWithApiGatewayStack(Construct scope, string id, IStackProps props = null) : base(scope, id, props)
+        public LambdaWithApiGatewayStack(Construct scope, string id, IStackProps props = null) : base(scope, id, props)
         {
             Table dynamoDbUserTable = new Table(this, "DynamoDbUserTable", new TableProps {
                 PartitionKey = new Attribute { Name = "Id", Type = AttributeType.STRING },
