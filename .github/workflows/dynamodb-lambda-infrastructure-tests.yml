@@ -19,14 +19,14 @@ jobs:
       - name: Build
         run: dotnet build LambdaWithDynamoDB/src/LambdaWithDynamoDb.sln --configuration Release --no-restore
       - name: LambdaFunction_ShouldHaveDynamoDbTableEnvironmentVariable
-        run: dotnet test src/LambdaWithApiGateway.sln --filter "FullyQualifiedName~Stack_LambdaFunction_ShouldHaveDynamoDbTableEnvironmentVariable"
+        run: dotnet test LambdaWithDynamoDB/src/LambdaWithDynamoDb.sln --filter "FullyQualifiedName~Stack_LambdaFunction_ShouldHaveDynamoDbTableEnvironmentVariable"
       - name: Stack_FunctionExecutionPolicy_ShouldOnlyHaveAccessToOneDynamoDbResourceAndAllCloudWatchLogs
-        run: dotnet test src/LambdaWithApiGateway.sln --filter "FullyQualifiedName~Stack_FunctionExecutionPolicy_ShouldOnlyHaveAccessToOneDynamoDbResourceAndAllCloudWatchLogs"
+        run: dotnet test LambdaWithDynamoDB/src/LambdaWithDynamoDb.sln --filter "FullyQualifiedName~Stack_FunctionExecutionPolicy_ShouldOnlyHaveAccessToOneDynamoDbResourceAndAllCloudWatchLogs"
       - name: Stack_FunctionExecutionRole_ShouldAllowLambdaServicePrincipal
-        run: dotnet test src/LambdaWithApiGateway.sln --filter "FullyQualifiedName~Stack_FunctionExecutionRole_ShouldAllowLambdaServicePrincipal"
+        run: dotnet test LambdaWithDynamoDB/src/LambdaWithDynamoDb.sln --filter "FullyQualifiedName~Stack_FunctionExecutionRole_ShouldAllowLambdaServicePrincipal"
       - name: Stack_DynamoDb_ShouldHaveFiveRcuAndWcu
-        run: dotnet test src/LambdaWithApiGateway.sln --filter "FullyQualifiedName~Stack_DynamoDb_ShouldHaveFiveRcuAndWcu"
+        run: dotnet test LambdaWithDynamoDB/src/LambdaWithDynamoDb.sln --filter "FullyQualifiedName~Stack_DynamoDb_ShouldHaveFiveRcuAndWcu"
       - name: Stack_DynamoDb_ShouldHaveDeletionPolicyDelete
-        run: dotnet test src/LambdaWithApiGateway.sln --filter "FullyQualifiedName~Stack_DynamoDb_ShouldHaveDeletionPolicyDelete"
+        run: dotnet test LambdaWithDynamoDB/src/LambdaWithDynamoDb.sln --filter "FullyQualifiedName~Stack_DynamoDb_ShouldHaveDeletionPolicyDelete"
       - name: Stack_DynamoDb_ShouldHaveIdPartitionKey
-        run: dotnet test src/LambdaWithApiGateway.sln --filter "FullyQualifiedName~Stack_DynamoDb_ShouldHaveIdPartitionKey"
+        run: dotnet test LambdaWithDynamoDB/src/LambdaWithDynamoDb.sln --filter "FullyQualifiedName~Stack_DynamoDb_ShouldHaveIdPartitionKey"
