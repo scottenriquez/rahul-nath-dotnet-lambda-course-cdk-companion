@@ -1,0 +1,28 @@
+name: LambdaTriggersInfrastructureTests 
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['6.0.x']
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Install dependencies
+        run: dotnet restore LambdaTriggers/src/LambdaTriggers.sln
+      - name: Build
+        run: dotnet build LambdaTriggers/src/LambdaTriggers.sln --configuration Release --no-restore
+      - name: Stack_Topic_ShouldExist
+        run: dotnet test LambdaTriggers/src/LambdaTriggers.sln --filter "FullyQualifiedName~Stack_Topic_ShouldExist"
+      - name: Stack_Queue_ShouldExist
+        run: dotnet test LambdaTriggers/src/LambdaTriggers.sln --filter "FullyQualifiedName~Stack_Queue_ShouldExist"
+      - name: Stack_SnsLambda_ShouldHaveTopicSubscription 
+        run: dotnet test LambdaTriggers/src/LambdaTriggers.sln --filter "FullyQualifiedName~Stack_SnsLambda_ShouldHaveTopicSubscription"
+      - name: Stack_SqsLambda_ShouldHaveQueueEventMapping 
+        run: dotnet test LambdaTriggers/src/LambdaTriggers.sln --filter "FullyQualifiedName~Stack_SqsLambda_ShouldHaveQueueEventMapping"

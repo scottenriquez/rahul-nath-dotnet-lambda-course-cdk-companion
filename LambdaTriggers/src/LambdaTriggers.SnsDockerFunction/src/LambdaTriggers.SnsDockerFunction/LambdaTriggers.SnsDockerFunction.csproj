@@ -15,4 +15,11 @@
     <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.3.0" />
     <PackageReference Include="Amazon.Lambda.SNSEvents" Version="2.0.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ContentWithTargetPath Include="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <TargetPath>src/LambdaTriggers.SnsDockerFunction/src/LambdaTriggers.SnsDockerFunction/Dockerfile</TargetPath>
+    </ContentWithTargetPath>
+    <None Include="Dockerfile" />
+  </ItemGroup>
 </Project>
