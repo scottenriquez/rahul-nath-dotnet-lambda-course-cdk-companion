@@ -19,4 +19,4 @@ jobs:
       - name: Build
         run: dotnet build LambdaWithAPIGateway/src/LambdaWithApiGateway.sln --configuration Release --no-restore
       - name: Test
-        run: dotnet test LambdaTriggers/src/LambdaTriggers.SnsDockerFunction/test/LambdaTriggers.SnsDockerFunction.Tests/LambdaTriggers.SqsDockerFunction.Tests.csproj 
+        run: dotnet test LambdaTriggers/src/LambdaTriggers.SnsDockerFunction/test/LambdaTriggers.SnsDockerFunction.Tests/LambdaTriggers.SnsDockerFunction.Tests.csproj 
