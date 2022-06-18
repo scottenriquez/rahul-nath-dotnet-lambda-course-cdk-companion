@@ -1,4 +1,4 @@
-name: DynamoDBLambaInfrastructureTests 
+name: DynamoDBLambdaInfrastructureTests 
 
 on: [push]
 

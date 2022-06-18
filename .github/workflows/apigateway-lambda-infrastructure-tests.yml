@@ -1,4 +1,4 @@
-name: APIGatewayLambaTests 
+name: APIGatewayLambdaInfrastructureTests 
 
 on: [push]
 

@@ -8,7 +8,6 @@ namespace LambdaTriggers.SqsDockerFunction;
 
 public class Function
 {
-    
     /// <summary>
     /// Lambda function that processes messages from SQS 
     /// </summary>

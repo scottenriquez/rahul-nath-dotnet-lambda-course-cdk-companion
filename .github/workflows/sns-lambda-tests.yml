@@ -1,4 +1,4 @@
-name: APIGatewayLambdaTests 
+name: SNSLambdaTests 
 
 on: [push]
 
@@ -19,4 +19,4 @@ jobs:
       - name: Build
         run: dotnet build LambdaWithAPIGateway/src/LambdaWithApiGateway.sln --configuration Release --no-restore
       - name: Test
-        run: dotnet test LambdaWithAPIGateway/src/LambdaWithApiGateway.DockerFunction/test/LambdaWithApiGateway.DockerFunction.Tests/LambdaWithApiGateway.DockerFunction.Tests.csproj
+        run: dotnet test LambdaTriggers/src/LambdaTriggers.SnsDockerFunction/test/LambdaTriggers.SnsDockerFunction.Tests/LambdaTriggers.SqsDockerFunction.Tests.csproj 
